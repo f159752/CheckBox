@@ -9,11 +9,23 @@ import UIKit
 
 class ViewController: UIViewController {
 
+  @IBOutlet weak var mainCheckBox: CheckBox!
+  @IBOutlet var checkBoxChildren: [CheckBox]!
+  
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view.
+    
+    mainCheckBox.delegate = self
+    checkBoxChildren.forEach({ $0.delegate = self })
+    mainCheckBox.addChildren(checkBoxChildren)
   }
 
 
 }
 
+extension ViewController: CheckBoxDelegate {
+  func didChangeStateCheckBox(_ checkBox: CheckBox, state: CheckBox.State) {
+    print(checkBox, state)
+  }
+}

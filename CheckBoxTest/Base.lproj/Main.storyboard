@@ -1,24 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CheckBoxTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fF9-Og-ESZ" customClass="CheckBox" customModule="CheckBoxTest" customModuleProvider="target">
+                                <rect key="frame" x="182" y="423" width="50" height="50"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="6mM-SA-N9B"/>
+                                    <constraint firstAttribute="height" constant="50" id="dWq-lE-hz1"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Rv-qg-5BT" customClass="CheckBox" customModule="CheckBoxTest" customModuleProvider="target">
+                                <rect key="frame" x="194.5" y="489" width="25" height="25"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="Ht5-TH-H62"/>
+                                    <constraint firstAttribute="width" constant="25" id="szz-WF-StX"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b1Q-Pd-8pp" customClass="CheckBox" customModule="CheckBoxTest" customModuleProvider="target">
+                                <rect key="frame" x="194.5" y="530" width="25" height="25"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="70u-w1-Y8C"/>
+                                    <constraint firstAttribute="width" constant="25" id="h3A-2e-w1h"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZIs-i1-rdj" customClass="CheckBox" customModule="CheckBoxTest" customModuleProvider="target">
+                                <rect key="frame" x="194.5" y="571" width="25" height="25"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="6bt-2e-dFa"/>
+                                    <constraint firstAttribute="height" constant="25" id="7Mg-nX-Q4a"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="b1Q-Pd-8pp" firstAttribute="centerX" secondItem="4Rv-qg-5BT" secondAttribute="centerX" id="4hv-yg-tx2"/>
+                            <constraint firstItem="ZIs-i1-rdj" firstAttribute="top" secondItem="b1Q-Pd-8pp" secondAttribute="bottom" constant="16" id="CZ7-A7-jjQ"/>
+                            <constraint firstItem="ZIs-i1-rdj" firstAttribute="centerX" secondItem="b1Q-Pd-8pp" secondAttribute="centerX" id="Gxi-UC-LkG"/>
+                            <constraint firstItem="b1Q-Pd-8pp" firstAttribute="top" secondItem="4Rv-qg-5BT" secondAttribute="bottom" constant="16" id="SzH-JN-daG"/>
+                            <constraint firstItem="4Rv-qg-5BT" firstAttribute="centerX" secondItem="fF9-Og-ESZ" secondAttribute="centerX" id="a8N-3n-MeU"/>
+                            <constraint firstItem="fF9-Og-ESZ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="k5e-J6-YD8"/>
+                            <constraint firstItem="fF9-Og-ESZ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kaf-iw-Rd4"/>
+                            <constraint firstItem="4Rv-qg-5BT" firstAttribute="top" secondItem="fF9-Og-ESZ" secondAttribute="bottom" constant="16" id="sXK-Qk-cpF"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mainCheckBox" destination="fF9-Og-ESZ" id="lfz-Se-5hN"/>
+                        <outletCollection property="checkBoxChildren" destination="4Rv-qg-5BT" collectionClass="NSMutableArray" id="L4A-5n-TJw"/>
+                        <outletCollection property="checkBoxChildren" destination="b1Q-Pd-8pp" collectionClass="NSMutableArray" id="NOb-Ho-2hK"/>
+                        <outletCollection property="checkBoxChildren" destination="ZIs-i1-rdj" collectionClass="NSMutableArray" id="yGY-WC-SwT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-25" y="121"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

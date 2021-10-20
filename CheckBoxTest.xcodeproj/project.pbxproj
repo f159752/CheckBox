@@ -7,15 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		701C5AF127203D3C002B5199 /* CheckBoxDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701C5AF027203D3C002B5199 /* CheckBoxDelegate.swift */; };
 		706F2268271F07D300173263 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F2267271F07D300173263 /* AppDelegate.swift */; };
 		706F226A271F07D300173263 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F2269271F07D300173263 /* SceneDelegate.swift */; };
 		706F226C271F07D300173263 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F226B271F07D300173263 /* ViewController.swift */; };
 		706F226F271F07D300173263 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 706F226D271F07D300173263 /* Main.storyboard */; };
 		706F2271271F07D600173263 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 706F2270271F07D600173263 /* Assets.xcassets */; };
 		706F2274271F07D600173263 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 706F2272271F07D600173263 /* LaunchScreen.storyboard */; };
+		706F227D271F081000173263 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F227C271F080F00173263 /* CheckBox.swift */; };
+		70FF153C271F34D800C3ABCB /* PathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FF153B271F34D800C3ABCB /* PathManager.swift */; };
+		70FF153E271F359200C3ABCB /* BoxType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FF153D271F359200C3ABCB /* BoxType.swift */; };
+		70FF1540271F4BC700C3ABCB /* LayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FF153F271F4BC700C3ABCB /* LayerManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		701C5AF027203D3C002B5199 /* CheckBoxDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxDelegate.swift; sourceTree = "<group>"; };
 		706F2264271F07D300173263 /* CheckBoxTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CheckBoxTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		706F2267271F07D300173263 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		706F2269271F07D300173263 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +30,10 @@
 		706F2270271F07D600173263 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		706F2273271F07D600173263 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		706F2275271F07D600173263 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		706F227C271F080F00173263 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		70FF153B271F34D800C3ABCB /* PathManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathManager.swift; sourceTree = "<group>"; };
+		70FF153D271F359200C3ABCB /* BoxType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxType.swift; sourceTree = "<group>"; };
+		70FF153F271F4BC700C3ABCB /* LayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayerManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,12 +69,25 @@
 				706F2267271F07D300173263 /* AppDelegate.swift */,
 				706F2269271F07D300173263 /* SceneDelegate.swift */,
 				706F226B271F07D300173263 /* ViewController.swift */,
+				706F227B271F080300173263 /* CheckBox */,
 				706F226D271F07D300173263 /* Main.storyboard */,
 				706F2270271F07D600173263 /* Assets.xcassets */,
 				706F2272271F07D600173263 /* LaunchScreen.storyboard */,
 				706F2275271F07D600173263 /* Info.plist */,
 			);
 			path = CheckBoxTest;
+			sourceTree = "<group>";
+		};
+		706F227B271F080300173263 /* CheckBox */ = {
+			isa = PBXGroup;
+			children = (
+				706F227C271F080F00173263 /* CheckBox.swift */,
+				701C5AF027203D3C002B5199 /* CheckBoxDelegate.swift */,
+				70FF153B271F34D800C3ABCB /* PathManager.swift */,
+				70FF153F271F4BC700C3ABCB /* LayerManager.swift */,
+				70FF153D271F359200C3ABCB /* BoxType.swift */,
+			);
+			path = CheckBox;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +161,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70FF153E271F359200C3ABCB /* BoxType.swift in Sources */,
+				706F227D271F081000173263 /* CheckBox.swift in Sources */,
 				706F226C271F07D300173263 /* ViewController.swift in Sources */,
+				701C5AF127203D3C002B5199 /* CheckBoxDelegate.swift in Sources */,
 				706F2268271F07D300173263 /* AppDelegate.swift in Sources */,
+				70FF1540271F4BC700C3ABCB /* LayerManager.swift in Sources */,
+				70FF153C271F34D800C3ABCB /* PathManager.swift in Sources */,
 				706F226A271F07D300173263 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,6 +325,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -325,6 +354,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
