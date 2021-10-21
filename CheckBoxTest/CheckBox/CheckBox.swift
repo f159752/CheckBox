@@ -11,12 +11,7 @@ import UIKit
   
   //MARK: - Private Variable
   private var _type: BoxType = .boxTypeCircle
-  private var state = State.off {
-    didSet {
-      selected = state.selected
-      fullSelected = state.selectedFull
-    }
-  }
+  private(set) var state = State.off
   private let pathManager = PathManager()
   weak var delegate: CheckBoxDelegate?
   weak var owner: CheckBox? = nil
@@ -59,17 +54,11 @@ import UIKit
       setupView()
     }
   }
-
+  
   @IBInspectable
-  var bgColor: UIColor = .black {
+  var selected: Bool = false {
     didSet {
-      setupView()
-    }
-  }
-
-  @IBInspectable
-  var selected: Bool = true {
-    didSet {
+      stateSetterSelected(selected)
       setupView()
     }
   }
@@ -77,12 +66,13 @@ import UIKit
   @IBInspectable
   var fullSelected: Bool = true {
     didSet {
+      stateSetterSelectedFull(fullSelected)
       setupView()
     }
   }
-  
+
   @IBInspectable
-  var borderColor: UIColor = .green {
+  var bgColor: UIColor = .clear {
     didSet {
       setupView()
     }
@@ -103,21 +93,35 @@ import UIKit
   }
   
   @IBInspectable
-  var borderLineWidth: CGFloat = 5 {
+  var onShapeColor: UIColor = .green {
     didSet {
       setupView()
     }
   }
   
   @IBInspectable
-  var markLineWidth: CGFloat = 5 {
+  var offShapeColor: UIColor = .gray {
     didSet {
       setupView()
     }
   }
   
   @IBInspectable
-  var cornerRadius: CGFloat = 5 {
+  var borderLineWidth: CGFloat = 4 {
+    didSet {
+      setupView()
+    }
+  }
+  
+  @IBInspectable
+  var markLineWidth: CGFloat = 3 {
+    didSet {
+      setupView()
+    }
+  }
+  
+  @IBInspectable
+  var boxCornerRadius: CGFloat = 5 {
     didSet {
       setupView()
     }
@@ -144,7 +148,7 @@ import UIKit
   //MARK: - Private Methods
   private func setupView() {
     pathManager.setup(size: frame.size.width,
-                      cornerRadius: cornerRadius)
+                      cornerRadius: boxCornerRadius)
     pathManager.setup(arcCenter: CGPoint(x: frame.size.width / 2, y: frame.size.height / 2),
                       radius: frame.size.width / 2,
                       startAngle: 0,
@@ -169,7 +173,7 @@ import UIKit
       type: _type,
       path: pathManager.pathFor(boxType: _type),
       fillColor: .clear,
-      strokeColor: borderColor,
+      strokeColor: selected ? onShapeColor : offShapeColor,
       lineWidth: borderLineWidth)
     addReplaceSublayer(borderLayer, name: _type.borderLayerName)
   }
@@ -182,7 +186,7 @@ import UIKit
       let path = pathManager.pathFor(state: state)
       let checkMarkLayer = LayerManager.chechMark(type: _type,
                                                   path: path,
-                                                  strokeColor: onFullColor,
+                                                  strokeColor: fullSelected ? onFullColor : onPartColor,
                                                   lineWidth: markLineWidth)
       addReplaceSublayer(checkMarkLayer, name: _type.selectedElementLayerName)
     }
@@ -206,16 +210,16 @@ import UIKit
       if children.allSatisfy({ $0.state == newState }) {
         if newState == .off {
           let newState = State.off
-          owner.state = newState
+          owner.stateSetter(on: newState)
           owner.delegate?.didChangeStateCheckBox(owner, state: newState)
         } else {
           let newState = State.on(full: true)
-          owner.state = newState
+          owner.stateSetter(on: newState)
           owner.delegate?.didChangeStateCheckBox(owner, state: newState)
         }
       } else {
         let newState = State.on(full: false)
-        owner.state = newState
+        owner.stateSetter(on: newState)
         owner.delegate?.didChangeStateCheckBox(owner, state: newState)
       }
     }
@@ -225,30 +229,49 @@ import UIKit
         if oldState == .off {
           children.forEach({
             let state = State.on(full: true)
-            $0.state = state
+            $0.stateSetter(on: newState)
             $0.delegate?.didChangeStateCheckBox($0, state: state)
           })
-          state = .on(full: true)
+          stateSetter(on: .on(full: true))
         } else if oldState == .on(full: true) || oldState == .on(full: false) {
           children.forEach({
             let state = State.off
-            $0.state = state
+            $0.stateSetter(on: newState)
             $0.delegate?.didChangeStateCheckBox($0, state: state)
           })
-          state = .off
+          stateSetter(on: .off)
         }
       } else {
         children.forEach({
           let state = State.off
-          $0.state = state
+          $0.stateSetter(on: newState)
           $0.delegate?.didChangeStateCheckBox($0, state: state)
         })
-        state = .off
+        stateSetter(on: .off)
       }
     }
     
-    state = newState
+    stateSetter(on: newState)
     delegate?.didChangeStateCheckBox(self, state: state)
+  }
+  
+  private func stateSetter(on: State) {
+    switch on {
+    case .off:
+      selected = false
+      fullSelected = true
+    case .on(let full):
+      selected = true
+      fullSelected = full
+    }
+  }
+  
+  private func stateSetterSelected(_ bool: Bool) {
+    state = bool ? .on(full: fullSelected) : .off
+  }
+  
+  private func stateSetterSelectedFull(_ bool: Bool) {
+    state = selected ? .on(full: bool) : .off
   }
   
   //MARK: - Layers
@@ -310,4 +333,3 @@ import UIKit
     }
   }
 }
-

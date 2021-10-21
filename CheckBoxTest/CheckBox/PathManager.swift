@@ -30,9 +30,9 @@ class PathManager {
   public func pathFor(state: CheckBox.State) -> UIBezierPath {
     let path = UIBezierPath()
     if state == .on(full: true) {
-      path.move(to: CGPoint(x: size * 0.3, y: size * 0.525))
-      path.addLine(to: CGPoint(x: size * 0.5, y: size * 0.725))
-      path.addLine(to: CGPoint(x: size * 0.75, y: size * 0.25))
+      path.move(to: CGPoint(x: size * 0.25, y: size * 0.525))
+      path.addLine(to: CGPoint(x: size * 0.45, y: size * 0.725))
+      path.addLine(to: CGPoint(x: size * 0.725, y: size * 0.25))
     } else if state == .on(full: false) {
       path.move(to: CGPoint(x: size * 0.25, y: size * 0.5))
       path.addLine(to: CGPoint(x: size * 0.75, y: size * 0.5))
