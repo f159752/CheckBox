@@ -13,6 +13,7 @@ import UIKit
   private var _type: BoxType = .boxTypeCircle
   private(set) var state = State.off
   private let pathManager = PathManager()
+  private var animationManager: AnimationManager!
   weak var delegate: CheckBoxDelegate?
   weak var owner: CheckBox? = nil
   private var children: [CheckBox] = []
@@ -37,6 +38,7 @@ import UIKit
   
   private func commonInit() {
     addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapCheckBox)))
+    animationManager = AnimationManager(animationDuration)
   }
   
   //MARK: - Public Variable
@@ -134,6 +136,13 @@ import UIKit
     }
   }
   
+  @IBInspectable var animationDuration: CGFloat = 0.5 {
+    didSet {
+      animationManager.animationDuration = animationDuration
+      setupView()
+    }
+  }
+  
   //MARK: - Public Methods
   public func addChild(_ checkBox: CheckBox) {
     checkBox.owner = self
@@ -172,6 +181,10 @@ import UIKit
     self.borderLineWidth = borderLineWidth
     self.markLineWidth = markLineWidth
     self.boxCornerRadius = boxCornerRadius
+  }
+  
+  public func setAnimationDuration(animationDuration: CGFloat) {
+    self.animationDuration = animationDuration
   }
 
   //MARK: - Private Methods
@@ -283,6 +296,7 @@ import UIKit
     
     stateSetter(on: newState)
     delegate?.didChangeStateCheckBox(self, state: state)
+    animateCheckMark(hide: newState == .off)
   }
   
   private func stateSetter(on: State) {
@@ -294,6 +308,7 @@ import UIKit
       selected = true
       fullSelected = full
     }
+    animateCheckMark(hide: on == .off)
   }
   
   private func stateSetterSelected(_ bool: Bool) {
@@ -316,6 +331,20 @@ import UIKit
       layer.replaceSublayer(oldLayer, with: subLayer)
     } else {
       layer.addSublayer(subLayer)
+    }
+  }
+  
+  private func layer(with name: String) -> CALayer? {
+    return layer.sublayers?.first(where: { $0.name == name })
+  }
+  
+  //MARK: - Animation
+  private func animateCheckMark(hide: Bool) {
+    guard animationDuration > 0.0 else { return }
+    
+    let animation: CABasicAnimation = animationManager.strokeAnimation(reverse: hide)
+    if let borderLayer = layer(with: _type.selectedElementLayerName) {
+      borderLayer.add(animation, forKey: animation.keyPath)
     }
   }
   
