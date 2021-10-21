@@ -79,6 +79,27 @@ import UIKit
   }
   
   @IBInspectable
+  var offShapeColor: UIColor = .gray {
+    didSet {
+      setupView()
+    }
+  }
+  
+  @IBInspectable
+  var onPartShapeColor: UIColor = .green {
+    didSet {
+      setupView()
+    }
+  }
+  
+  @IBInspectable
+  var onFullShapeColor: UIColor = .green {
+    didSet {
+      setupView()
+    }
+  }
+  
+  @IBInspectable
   var onFullColor: UIColor = .green {
     didSet {
       setupView()
@@ -87,20 +108,6 @@ import UIKit
   
   @IBInspectable
   var onPartColor: UIColor = .gray {
-    didSet {
-      setupView()
-    }
-  }
-  
-  @IBInspectable
-  var onShapeColor: UIColor = .green {
-    didSet {
-      setupView()
-    }
-  }
-  
-  @IBInspectable
-  var offShapeColor: UIColor = .gray {
     didSet {
       setupView()
     }
@@ -144,6 +151,28 @@ import UIKit
       children.remove(at: index)
     }
   }
+  
+  public func setColors(bgColor: UIColor,
+                        offShapeColor: UIColor,
+                        onPartShapeColor: UIColor,
+                        onFullShapeColor: UIColor,
+                        onFullColor: UIColor,
+                        onPartColor: UIColor) {
+    self.bgColor = bgColor
+    self.offShapeColor = offShapeColor
+    self.onPartShapeColor = onPartShapeColor
+    self.onFullShapeColor = onFullShapeColor
+    self.onFullColor = onFullColor
+    self.onPartColor = onPartColor
+  }
+  
+  public func setFigureParams(borderLineWidth: CGFloat = 4,
+                              markLineWidth: CGFloat = 3,
+                              boxCornerRadius: CGFloat = 5) {
+    self.borderLineWidth = borderLineWidth
+    self.markLineWidth = markLineWidth
+    self.boxCornerRadius = boxCornerRadius
+  }
 
   //MARK: - Private Methods
   private func setupView() {
@@ -169,11 +198,12 @@ import UIKit
   }
   
   private func drawBorder() {
+    let borderColor = selected ? (fullSelected ? onFullShapeColor : onPartShapeColor) : offShapeColor
     let borderLayer = LayerManager.borderLayer(
       type: _type,
       path: pathManager.pathFor(boxType: _type),
       fillColor: .clear,
-      strokeColor: selected ? onShapeColor : offShapeColor,
+      strokeColor: borderColor,
       lineWidth: borderLineWidth)
     addReplaceSublayer(borderLayer, name: _type.borderLayerName)
   }
